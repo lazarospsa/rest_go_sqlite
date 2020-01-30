@@ -27,6 +27,6 @@ func main() {
 		v1.PUT("/users/:id", UpdateUser)
 		v1.DELETE("/users/:id", DeleteUser)
 	}
-
+	MockUsers()
 	r.Run(":8080")
 }

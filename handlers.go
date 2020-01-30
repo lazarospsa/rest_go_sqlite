@@ -1,6 +1,9 @@
 package main
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/gin-gonic/gin"
+	"github.com/zhexuany/wordGenerator"
+)
 
 //PostUser is the function that takes the data from
 //the request and pass it into database to create a user
@@ -22,6 +25,18 @@ func PostUser(c *gin.Context) {
 	}
 
 	// curl -i -X POST -H "Content-Type: application/json" -d "{ \"firstname\": \"Thea\", \"lastname\": \"Queen\" }" http://localhost:8080/api/v1/users
+}
+
+func MockUsers() {
+	db := InitDb()
+	defer db.Close()
+
+	var user Users
+
+	user.Firstname = wordGenerator.GetWord(5)
+	user.Lastname = wordGenerator.GetWord(5)
+	db.Create(&user)
+
 }
 
 func GetUsers(c *gin.Context) {
