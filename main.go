@@ -14,6 +14,7 @@ func Cors() gin.HandlerFunc {
 }
 
 func main() {
+	gin.SetMode(gin.ReleaseMode)
 	r := gin.Default()
 
 	r.Use(Cors())
